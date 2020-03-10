@@ -3,17 +3,47 @@ import PropTypes from 'prop-types';
 
 
 class CheckList extends React.Component {
-    render() {
-        return (
-            <div>
 
+    checkInputKeyPressed(e) {
+        if(e.key === 'Enter') {
+            this.props.taskCallbacks.add(this.props.cardId, e.target.value);
+            e.target.value = '';
+        }
+    }
+
+    render() {
+
+        let tasks = this.props.tasks.map( (task, taskIndex) => (
+            <li key={task.id} className={task.done ? "task task--done": "task"}>
+                <input  type="checkbox"
+                        checked={task.done}
+                        onChange={this.props.taskCallbacks.toogle.bind(null, this.props.cardId, task.id, taskIndex)} />
+                        {task.name}
+
+
+                <button href="#" className="checklist__task--remove"
+                   onClick={this.props.taskCallbacks.delete.bind(null, this.props.cardId, task.id, taskIndex)}>
+                <i className="fa fa-trash" />
+                </button>
+
+            </li>
+        ));
+
+        return (
+            <div className="checklist">
+                <ul>
+                    {tasks}
+                </ul>
+                <input className="checklist__input--add-task"
+                       placeholder="Add new task"
+                       onKeyPress={this.checkInputKeyPressed.bind(this)} />
             </div>
         );
     }
 }
 
 CheckList.propTypes = {
-    cardId: PropTypes.string,
+    cardId: PropTypes.number,
     taskCallbacks: PropTypes.object,
     tasks: PropTypes.arrayOf(PropTypes.object),
 };

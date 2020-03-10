@@ -30,6 +30,30 @@ let cardsList = [
                 status: false
             }
         ]
+    },
+    {
+        id: 3,
+        title: "Śniadanie",
+        description: "śniadanie",
+        status: 'done',
+        color: '#bd8d31',
+        tasks: [
+            {
+                id: 1,
+                name: 'Zrobić',
+                done: true,
+            },
+            {
+                id: 2,
+                name: 'Zjeść',
+                done: true,
+            },
+            {
+                id: 3,
+                name: 'Pozmywać',
+                done: true,
+            }
+        ]
     }
 ];
 

@@ -1,6 +1,43 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import CheckList from "../TasksList/CheckList";
+import { DragSource, DropTarget } from 'react-dnd';
+
+
+const cardDragSpec = {
+    beginDrag(props) {
+        return {
+            id: props.id,
+            status: props.status
+        };
+    },
+    endDrag(props) {
+        props.cardCallbacks.persistCardDrag(props.id, props.status)
+    }
+};
+
+const cardDropSpec = {
+    hover(props, monitor) {
+        const draggedId = monitor.getItem().id;
+
+        props.cardCallbacks.updateCardPosition(draggedId, props.id)
+    }
+};
+
+let collectDrag = (connect, monitor) => {
+    return {
+        connectDragSource: connect.dragSource(),
+    }
+};
+
+let collectDrop = (connect, monitor) => {
+    return {
+        connectDropTarget: connect.dropTarget(),
+
+    }
+};
+
 
 class Card extends React.Component{
     constructor() {
@@ -9,8 +46,6 @@ class Card extends React.Component{
         this.state = {
             showDetails: false
         }
-
-
     }
 
     toggleDetails() {
@@ -19,38 +54,40 @@ class Card extends React.Component{
     }
 
     render() {
-        let tasks = this.props.tasks.map( (task, taskId) => (
-            <li key={task.id}>
-                <input  type="checkbox"
-                        checked={task.done}
-                />
-                {task.name}
-            </li>
-        ));
+        const { connectDragSource, connectDropTarget} = this.props;
 
         let sideColor = {
             position: 'absolute',
-            zIndex: -1,
+            zIndex: 1,
             top: 0,
             bottom: 0,
             left: 0,
             width: 7,
-            backgroundColor: this.props.color
+            backgroundColor: this.props.color,
+            borderRadius: 3
         };
 
         let cardDetails;
 
         if (this.state.showDetails) {
             cardDetails = (
-                <div className="card__details">
+                <div className="card__details" >
                     <p>{this.props.description}</p>
+
+                    <CheckList cardId={this.props.id}
+                               tasks={this.props.tasks}
+                               taskCallbacks={this.props.taskCallbacks} />
+
                 </div>
             )
         }
 
-        return (
-            <div className="card__wrapper">
-                <div className={sideColor}>
+        return connectDropTarget(connectDragSource(
+            <div className="card" >
+                <div>
+                    <div style={sideColor}>
+
+                    </div>
                     <div className={
                          this.state.showDetails? "card__title card__title--is-open" : "card__title"}
                          onClick={this.toggleDetails.bind(this)}>
@@ -64,16 +101,20 @@ class Card extends React.Component{
                 </div>
 
             </div>
-        );
+        ));
     }
 }
 
 Card.propTypes = {
     title: PropTypes.string.isRequired,
-    tasks: PropTypes.arrayOf(PropTypes.object),
     description: PropTypes.string,
     taskCallbacks: PropTypes.object,
+    cardCallbacks: PropTypes.object,
     color: PropTypes.string
 };
 
-export default Card;
+const dragHighOrderCard = DragSource('card', cardDragSpec, collectDrag)(Card);
+const dragDropHighOrderCard = DropTarget('card', cardDropSpec, collectDrop)(dragHighOrderCard);
+
+export default dragDropHighOrderCard
+

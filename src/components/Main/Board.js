@@ -1,28 +1,39 @@
 import React from "react";
-import List from "./List";
-import HTML5Backed from 'react-dnd-html5-backend';
+import List from "../TasksList/List";
 import {DndProvider} from "react-dnd";
+import HTML5Backend from 'react-dnd-html5-backend';
 import PropTypes from 'prop-types';
 
 
 class Board extends React.Component {
 
     render() {
-        return (
-            <div className="board">
-                <div className="lists__wrapper">
+        let bgStyle = {
+            background: 'url('+ this.props.bg + ')',
+            backgroundSize: '100% 100%'
+        };
 
-                    <DndProvider backend={HTML5Backed}>
-                        <List title="To Do"
+        return (
+            <div className="board" style={bgStyle}>
+                <div className="lists">
+
+                    <DndProvider backend={HTML5Backend}>
+                        <List id='todo'
+                              title="To Do"
                               taskCallbacks={this.props.taskCallbacks}
+                              cardCallbacks={this.props.cardCallbacks}
                               cards={this.props.cards.filter( (card) => card.status === 'todo')} />
 
-                        <List title="Doing"
+                        <List id='in-progress'
+                              title="Doing"
                               taskCallbacks={this.props.taskCallbacks}
+                              cardCallbacks={this.props.cardCallbacks}
                               cards={this.props.cards.filter( (card) => card.status === 'in-progress')} />
 
-                        <List title="Done"
+                        <List id="done"
+                            title="Done"
                               taskCallbacks={this.props.taskCallbacks}
+                              cardCallbacks={this.props.cardCallbacks}
                               cards={this.props.cards.filter( (card) => card.status === 'done')} />
 
                     </DndProvider>
@@ -37,8 +48,10 @@ class Board extends React.Component {
 }
 
 Board.propTypes = {
-  cards: PropTypes.arrayOf(PropTypes.object),
-  taskCallbacks: PropTypes.object
+    cards: PropTypes.arrayOf(PropTypes.object),
+    bg: PropTypes.string,
+    taskCallbacks: PropTypes.object,
+    cardCallbacks: PropTypes.object,
 };
 
 export default Board;
