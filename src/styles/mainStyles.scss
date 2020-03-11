@@ -1,0 +1,23 @@
+@import '../styles/components/card';
+@import '../styles/components/list';
+@import 'components/taskslist';
+
+$board-title-color: #cfcfcf;
+
+.board {
+  display: block;
+  height: 93vh;
+  width: 100%;
+}
+
+
+.board__title {
+  background-color: $board-title-color;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+

@@ -1,0 +1,110 @@
+.card {
+  background-color: #ebecf0;
+  border-radius: 3px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  position: relative;
+  white-space: normal; }
+  .card--add {
+    background-color: #008000;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    bottom: 30px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 35px;
+    height: 50px;
+    position: absolute;
+    right: 30px;
+    text-align: center;
+    text-decoration: none;
+    width: 50px;
+    z-index: 2; }
+  .card__title {
+    cursor: pointer;
+    margin-left: 3%;
+    padding: 4%; }
+  .card__details p {
+    padding: 4%;
+    text-decoration: none; }
+  .card__details li {
+    list-style: none; }
+
+.toggle-enter {
+  max-height: 0;
+  overflow: hidden; }
+  .toggle-enter.toggle-enter-active {
+    max-height: 300px;
+    overflow: hidden;
+    transition: max-height .25s ease-in; }
+
+.toggle-leave {
+  max-height: 300px;
+  overflow: hidden; }
+  .toggle-leave.toggle-leave-active {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .25s ease-out; }
+
+.lists {
+  display: grid;
+  grid-column-gap: 3%;
+  grid-template-columns: repeat(3, 30%);
+  margin-left: 1%; }
+
+.list {
+  border-radius: 3px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  font-family: Roboto, sans-serif;
+  max-height: 100%;
+  position: relative;
+  white-space: normal; }
+  .list__header {
+    background-color: #322d47;
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px 1px #000;
+    color: #fff;
+    flex: 0 0 auto;
+    min-height: 20px;
+    padding: 10px 8px;
+    position: relative;
+    text-align: center; }
+  .list__content {
+    font-family: 'Raleway', serif;
+    max-height: 50vh;
+    overflow-y: auto; }
+
+.checklist__input--add-task {
+  margin-left: 4%;
+  max-width: 50%; }
+
+.checklist__task--remove {
+  background-color: transparent;
+  box-shadow: none;
+  height: 20px;
+  margin-left: 5%;
+  padding: 0;
+  width: 20px; }
+
+.task--done {
+  opacity: .5;
+  text-decoration: line-through; }
+
+.board {
+  display: block;
+  height: 93vh;
+  width: 100%; }
+
+.board__title {
+  background-color: #cfcfcf;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase; }
+
+/*# sourceMappingURL=mainStyles.css.map */

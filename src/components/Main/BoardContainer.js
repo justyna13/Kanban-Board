@@ -69,7 +69,6 @@ class BoardContainer extends React.Component {
     }
 
     addCard(card) {
-        let prevState = this.state;
 
         if (card.id === null) {
             let card = Object.assign({}, card, {id:Date.now()});
@@ -83,11 +82,10 @@ class BoardContainer extends React.Component {
     updateCardStatus(cardId, listId) {
 
         let cardIndex = this.state.cards.findIndex((card)=>card.id === cardId);
-        // Get the current card
         let card = this.state.cards[cardIndex];
-        // Only proceed if hovering over a different list
+
         if(card.status !== listId){
-            // set the component state to the mutated object
+
             this.setState(update(this.state, {
                 cards: {
                     [cardIndex]: {
@@ -99,15 +97,13 @@ class BoardContainer extends React.Component {
     }
 
     updateCardPosition(cardId , afterId){
-        // Only proceed if hovering over a different card
+
         if(cardId !== afterId) {
-            // Find the index of the card
-            let cardIndex = this.state.cards.findIndex((card)=>card.id == cardId);
-            // Get the current card
-            let card = this.state.cards[cardIndex]
-            // Find the index of the card the user is hovering over
-            let afterIndex = this.state.cards.findIndex((card)=>card.id == afterId);
-            // Use splice to remove the card and reinsert it a the new index
+
+            let cardIndex = this.state.cards.findIndex((card)=>card.id === cardId);
+            let card = this.state.cards[cardIndex];
+            let afterIndex = this.state.cards.findIndex((card)=>card.id === afterId);
+
             this.setState(update(this.state, {
                 cards: {
                     $splice: [
@@ -117,13 +113,6 @@ class BoardContainer extends React.Component {
                 }
             }));
         }
-    }
-    persistCardDrag (cardId, status) {
-        // Find the index of the card
-        let cardIndex = this.state.cards.findIndex((card)=>card.id == cardId);
-        // Get the current card
-        let card = this.state.cards[cardIndex]
-
     }
 
 
@@ -141,7 +130,6 @@ class BoardContainer extends React.Component {
                        cardCallbacks={{
                            updateCardStatus: this.updateCardStatus,
                            updateCardPosition: this.updateCardPosition,
-                           persistCardDrag: this.persistCardDrag.bind(this)
                        }}
                        bg={defaultBg}
                 />
