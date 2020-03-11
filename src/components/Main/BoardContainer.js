@@ -12,7 +12,7 @@ class BoardContainer extends React.Component {
 
         this.state = {
             cards: [],
-        }
+        };
 
         this.updateCardStatus = this.updateCardStatus.bind(this);
         this.updateCardPosition = this.updateCardPosition.bind(this);
@@ -68,7 +68,8 @@ class BoardContainer extends React.Component {
         this.setState({cards: nextState});
     }
 
-    addCard(card) {
+    addCard = (card) => {
+        console.log(this.state);
 
         if (card.id === null) {
             let card = Object.assign({}, card, {id:Date.now()});
@@ -77,7 +78,7 @@ class BoardContainer extends React.Component {
         let nextState = update(this.state.cards, {$push: [card]});
 
         this.setState({cards: nextState});
-    }
+    };
 
     updateCardStatus(cardId, listId) {
 
@@ -117,24 +118,36 @@ class BoardContainer extends React.Component {
 
 
     render() {
-        return (
-            <div>
-                <Title title="Kanban Board"/>
 
-                <Board cards={this.state.cards}
-                       taskCallbacks={{
-                           toogle: this.toggleTask.bind(this),
-                           add: this.addTask.bind(this),
-                           delete: this.deleteTask.bind(this)
-                       }}
-                       cardCallbacks={{
-                           updateCardStatus: this.updateCardStatus,
-                           updateCardPosition: this.updateCardPosition,
-                       }}
-                       bg={defaultBg}
+        let board = this.props.children && React.cloneElement(Board, {
+            cards: this.state.cards,
+            taskCallbacks:{
+                toogle: this.toggleTask.bind(this),
+                add: this.addTask.bind(this),
+                delete: this.deleteTask.bind(this)
+            },
+            cardCallbacks:{
+                updateCardStatus: this.updateCardStatus,
+                updateCardPosition: this.updateCardPosition,
+            },
+            bg: defaultBg
+        });
+
+        return (
+            <Board cards={this.state.cards}
+                   taskCallbacks={{
+                       toogle: this.toggleTask.bind(this),
+                       add: this.addTask.bind(this),
+                       delete: this.deleteTask.bind(this)
+                   }}
+                   cardCallbacks={{
+                       addCard: this.addCard,
+                       updateCardStatus: this.updateCardStatus,
+                       updateCardPosition: this.updateCardPosition,
+                   }}
+                   bg={defaultBg}
                 />
-            </div>
-        );
+        )
     }
 }
 

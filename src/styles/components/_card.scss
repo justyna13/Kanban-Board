@@ -9,6 +9,7 @@ $add-card-color: #008000;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  margin-bottom: 5%;
   padding-bottom: 10px;
   position: relative;
   white-space: normal;
@@ -46,6 +47,9 @@ $add-card-color: #008000;
   }
 }
 
+.modal--open{
+  opacity: .5;
+}
 
 
 //Animations

@@ -1,27 +1,23 @@
 import React from 'react';
 import '../src/styles/mainStyles.scss';
-import NewCard from "./components/Card/NewCard";
-import EditCard from "./components/Card/EditCard";
-import { Route, Switch } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
+import {createBrowserHistory} from 'history';
 import BoardContainer from "./components/Main/BoardContainer";
+import Title from "./components/Main/Title";
+import {HashRouter} from "react-router-dom";
 
 function App() {
+    return (
+        <div>
+            <HashRouter history={createBrowserHistory()}>
 
-  return (
-    <div>
+                <Title title="Kanban Board"/>
+                <BoardContainer />
 
-        <BrowserRouter>
-            <Switch>
-                <Route exact path="/" component={BoardContainer} />
-                <Route path="/new" component={NewCard} />
-                <Route path="/edit/:card_id" component={EditCard} />
-
-            </Switch>
-
-        </BrowserRouter>
-    </div>
-  );
+            </HashRouter>
+        </div>
+    )
 }
+
+
 
 export default App;
