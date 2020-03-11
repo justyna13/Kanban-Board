@@ -9,7 +9,7 @@ class Board extends React.Component {
 
     render() {
         let bgStyle = {
-            background: 'url('+ this.props.bg + ')',
+            background: `url(${this.props.bg})`,
             backgroundSize: '100% 100%'
         };
 
