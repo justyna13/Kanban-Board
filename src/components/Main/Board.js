@@ -14,8 +14,7 @@ class Board extends React.Component {
     constructor() {
         super();
         this.state = {
-            modalVisible: false
-
+            modalVisible: false,
         }
     }
 
@@ -28,6 +27,7 @@ class Board extends React.Component {
             : this.setState({modalVisible: true});
 
     };
+
 
     render() {
         let bgStyle = {

@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import CheckList from "../TasksList/CheckList";
 import { DragSource, DropTarget } from 'react-dnd';
+import Modal from "react-bootstrap/Modal";
+import ModalHeader from "react-bootstrap/ModalHeader";
+import {ModalBody} from "react-bootstrap";
+import NewCard from "./NewCard";
+import EditCard from "./EditCard";
 
 
 const cardDragSpec = {
@@ -41,7 +46,8 @@ class Card extends React.Component{
         super(...arguments);
 
         this.state = {
-            showDetails: false
+            showDetails: false,
+            updateModalVisible: false,
         }
     }
 
@@ -49,6 +55,14 @@ class Card extends React.Component{
         this.setState({showDetails: !this.state.showDetails});
         console.log('toogle');
     }
+
+    toggleUpdateModal = () => {
+        this.state.updateModalVisible
+            ? this.setState({
+                updateModalVisible: false
+            })
+            : this.setState({updateModalVisible: true})
+    };
 
     render() {
         const { connectDragSource, connectDropTarget} = this.props;
@@ -85,17 +99,45 @@ class Card extends React.Component{
                     <div style={sideColor}>
 
                     </div>
-                    <div className={
-                         this.state.showDetails? "card__title card__title--is-open" : "card__title"}
-                         onClick={this.toggleDetails.bind(this)}>
-                        {this.props.title}
+                    <div className="card__header">
+                        <div className={
+                            this.state.showDetails? "card__title card__title--is-open" : "card__title"}
+                             onClick={this.toggleDetails.bind(this)}>
+                            {this.props.title}
+                        </div>
+
+                        <button className="checklist__task__btn checklist__task__btn--edit"
+                                onClick={this.toggleUpdateModal.bind(this)}>
+                            <i className="fa fa-edit"> </i>
+                        </button>
                     </div>
+
                     <ReactCSSTransitionGroup transitionName="toggle"
                                              transitionEnterTimeout={250}
                                              transitionLeaveTimeout={250}>
                         {cardDetails}
                     </ReactCSSTransitionGroup>
                 </div>
+
+                <Modal show={this.state.updateModalVisible} size="xl"
+                       onHide={() => this.toggleUpdateModal()}>
+                    <ModalHeader closeButton>
+                        <h3 className="modal__title">Add new card</h3>
+                    </ModalHeader>
+
+                    <ModalBody>
+                        <EditCard id={this.props.id}
+                                  title={this.props.title}
+                                  description={this.props.description}
+                                  status={this.props.status}
+                                  color={this.props.color}
+                                  tasks={this.props.tasks}
+                                  cardCallbacks={this.props.cardCallbacks} />
+
+                    </ModalBody>
+
+                </Modal>
+
 
             </div>
         ));

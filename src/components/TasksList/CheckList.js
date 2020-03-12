@@ -20,8 +20,7 @@ class CheckList extends React.Component {
                         onChange={this.props.taskCallbacks.toogle.bind(null, this.props.cardId, task.id, taskIndex)} />
                         {task.name}
 
-
-                <button href="#" className="checklist__task--remove"
+                <button href="#" className="checklist__task__btn checklist__task__btn--remove"
                    onClick={this.props.taskCallbacks.delete.bind(null, this.props.cardId, task.id, taskIndex)}>
                 <i className="fa fa-trash" />
                 </button>

@@ -80,6 +80,15 @@ class BoardContainer extends React.Component {
         this.setState({cards: nextState});
     };
 
+    updateCard = (card) => {
+        let cardIndex = this.state.cards.findIndex( (currentCard) => currentCard.id === card.id);
+        let nextState = update(this.state.cards, {
+            [cardIndex]: {$set: card}
+        });
+
+        this.setState({cards: nextState});
+    };
+
     updateCardStatus(cardId, listId) {
 
         let cardIndex = this.state.cards.findIndex((card)=>card.id === cardId);
@@ -127,6 +136,7 @@ class BoardContainer extends React.Component {
                 delete: this.deleteTask.bind(this)
             },
             cardCallbacks:{
+                updateCard: this.updateCard,
                 updateCardStatus: this.updateCardStatus,
                 updateCardPosition: this.updateCardPosition,
             },
@@ -142,6 +152,7 @@ class BoardContainer extends React.Component {
                    }}
                    cardCallbacks={{
                        addCard: this.addCard,
+                       updateCard: this.updateCard,
                        updateCardStatus: this.updateCardStatus,
                        updateCardPosition: this.updateCardPosition,
                    }}

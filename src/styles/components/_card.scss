@@ -35,6 +35,7 @@ $add-card-color: #008000;
     cursor: pointer;
     margin-left: 3%;
     padding: 4%;
+
   }
 
   &__details p {
@@ -44,6 +45,11 @@ $add-card-color: #008000;
 
   &__details li {
     list-style: none;
+  }
+
+  &__header {
+    display: grid;
+    grid-template-columns: 80% 10%;
   }
 }
 
