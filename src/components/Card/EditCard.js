@@ -22,6 +22,7 @@ class EditCard extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        this.props.close();
         this.props.cardCallbacks.updateCard(this.state);
     }
 
@@ -29,7 +30,7 @@ class EditCard extends React.Component {
         return (
             <div>
                 <CardForm draftCard={this.state}
-                          buttonLabel="Edytuj kartkę"
+                          buttonLabel="Edit card"
                           handleChange={this.handleChange.bind(this)}
                           handleSubmit={this.handleSubmit.bind(this)} />
             </div>
@@ -43,7 +44,8 @@ EditCard.propTypes = {
     description: PropTypes.string,
     color: PropTypes.string,
     tasks: PropTypes.array,
-    cardCallbacks: PropTypes.object
+    cardCallbacks: PropTypes.object,
+    close: PropTypes.func,
 };
 
 export default EditCard;

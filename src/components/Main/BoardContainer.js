@@ -4,6 +4,7 @@ import defaultCards from '../../defaultCards';
 import Board from "./Board";
 import defaultBg from '../../assets/images/bg-default.jpg';
 import Title from "./Title";
+import {HashRouter} from "react-router-dom";
 
 
 class BoardContainer extends React.Component {
@@ -12,6 +13,7 @@ class BoardContainer extends React.Component {
 
         this.state = {
             cards: [],
+            title: 'Kanban board',
         };
 
         this.updateCardStatus = this.updateCardStatus.bind(this);
@@ -125,39 +127,30 @@ class BoardContainer extends React.Component {
         }
     }
 
+    changeTitle(userTitle) {
+       this.setState({title: userTitle});
+    }
+
 
     render() {
-
-        let board = this.props.children && React.cloneElement(Board, {
-            cards: this.state.cards,
-            taskCallbacks:{
-                toogle: this.toggleTask.bind(this),
-                add: this.addTask.bind(this),
-                delete: this.deleteTask.bind(this)
-            },
-            cardCallbacks:{
-                updateCard: this.updateCard,
-                updateCardStatus: this.updateCardStatus,
-                updateCardPosition: this.updateCardPosition,
-            },
-            bg: defaultBg
-        });
-
         return (
-            <Board cards={this.state.cards}
-                   taskCallbacks={{
-                       toogle: this.toggleTask.bind(this),
-                       add: this.addTask.bind(this),
-                       delete: this.deleteTask.bind(this)
-                   }}
-                   cardCallbacks={{
-                       addCard: this.addCard,
-                       updateCard: this.updateCard,
-                       updateCardStatus: this.updateCardStatus,
-                       updateCardPosition: this.updateCardPosition,
-                   }}
-                   bg={defaultBg}
-                />
+            <div>
+                <Title title={this.state.title} changeTitle={this.changeTitle.bind(this)}/>
+
+                <Board cards={this.state.cards}
+                       taskCallbacks={{
+                           toogle: this.toggleTask.bind(this),
+                           add: this.addTask.bind(this),
+                           delete: this.deleteTask.bind(this)
+                       }}
+                       cardCallbacks={{
+                           addCard: this.addCard,
+                           updateCard: this.updateCard,
+                           updateCardStatus: this.updateCardStatus,
+                           updateCardPosition: this.updateCardPosition,
+                       }}
+                       bg={defaultBg} />
+            </div>
         )
     }
 }

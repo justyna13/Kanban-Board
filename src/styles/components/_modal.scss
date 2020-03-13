@@ -5,13 +5,18 @@ $modal-bg-color: #ebecf0;
   left: 25%;
   top: 25%;
   width: 40vw;
-  height: 50vh;
+  height: 55vh;
   overflow-y: auto;
   background-color: $modal-bg-color;
   padding: 40px;
   z-index: 10;
   border-radius: 10px;
   box-shadow: 2px 2px 1px 1px grey;
+
+  input, textarea {
+    border-radius: 5px;
+    padding: 5px;
+  }
 }
 
 

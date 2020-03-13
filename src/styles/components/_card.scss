@@ -1,7 +1,7 @@
-$card-bg-color: #ebecf0;
+$card-bg-color: #ECEDF3;
 $white: #fff;
 $box-shadow-1: 0 5px 10px rgba(0, 0, 0, .5);
-$add-card-color: #008000;
+$add-card-color:  #6aaf00;
 
 .card {
   background-color: $card-bg-color;
@@ -49,7 +49,7 @@ $add-card-color: #008000;
 
   &__header {
     display: grid;
-    grid-template-columns: 80% 10%;
+    grid-template-columns: 90% 10%;
   }
 }
 

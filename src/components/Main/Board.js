@@ -48,7 +48,7 @@ class Board extends React.Component {
                               cards={this.props.cards.filter( (card) => card.status === 'todo')} />
 
                         <List id='in-progress'
-                              title="Doing"
+                              title="In progress"
                               taskCallbacks={this.props.taskCallbacks}
                               cardCallbacks={this.props.cardCallbacks}
                               cards={this.props.cards.filter( (card) => card.status === 'in-progress')} />
@@ -74,7 +74,8 @@ class Board extends React.Component {
 
                     <ModalBody>
                         <NewCard cards={this.props.cards}
-                            cardCallbacks={this.props.cardCallbacks}/>
+                                 close={this.toggleModal}
+                                 cardCallbacks={this.props.cardCallbacks}/>
 
                     </ModalBody>
 

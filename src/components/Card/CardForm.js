@@ -5,10 +5,6 @@ import PropTypes from 'prop-types';
 class CardForm extends React.Component {
 
     handleChange(field, e) {
-        console.log('field:');
-        console.log(field);
-        console.log('target:');
-        console.log(e.target.value);
         this.props.handleChange(field, e.target.value);
     }
 
@@ -32,23 +28,24 @@ class CardForm extends React.Component {
                         <textarea value={this.props.draftCard.description}
                                   onChange={this.handleChange.bind(this, 'description')}
                                   placeholder='description'
+                                  rows={10} cols={50}
                                   required={true} /> <br/>  <br/>
-                        <label htmlFor="status">Status</label>
+                        <label htmlFor="status">Status </label>
                         <select id="status"
                                 onChange={this.handleChange.bind(this, 'status')}
                                 defaultValue={this.props.draftCard.status}>
                             <option value="todo">To Do</option>
                             <option value="in-progress">In Progress</option>
                             <option value="done">Done</option>
-                        </select> <br/>
-                        <label htmlFor="color">Color</label>
+                        </select> <br/> <br/>
+                        <label htmlFor="color">Color </label>
                         <input type="color"
                                id="color"
                                value={this.props.draftCard.color}
-                               onChange={this.handleChange.bind(this, 'color')} />
+                               onChange={this.handleChange.bind(this, 'color')} /> <br/> <br/>
 
                         <div className='actions' >
-                            <button type='submit'>{this.props.buttonLabel}</button>
+                            <button type='submit' className="button button--green">{this.props.buttonLabel}</button>
                         </div>
                     </form>
                 </div>

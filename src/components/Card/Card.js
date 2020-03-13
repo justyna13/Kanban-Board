@@ -75,7 +75,8 @@ class Card extends React.Component{
             left: 0,
             width: 7,
             backgroundColor: this.props.color,
-            borderRadius: 3
+            borderBottomLeftRadius: 3,
+            borderTopLeftRadius: 3
         };
 
         let cardDetails;
@@ -110,6 +111,7 @@ class Card extends React.Component{
                                 onClick={this.toggleUpdateModal.bind(this)}>
                             <i className="fa fa-edit"> </i>
                         </button>
+                        
                     </div>
 
                     <ReactCSSTransitionGroup transitionName="toggle"
@@ -122,7 +124,7 @@ class Card extends React.Component{
                 <Modal show={this.state.updateModalVisible} size="xl"
                        onHide={() => this.toggleUpdateModal()}>
                     <ModalHeader closeButton>
-                        <h3 className="modal__title">Add new card</h3>
+                        <h3 className="modal__title">Edit <i>{this.props.title}</i> card</h3>
                     </ModalHeader>
 
                     <ModalBody>
@@ -132,7 +134,8 @@ class Card extends React.Component{
                                   status={this.props.status}
                                   color={this.props.color}
                                   tasks={this.props.tasks}
-                                  cardCallbacks={this.props.cardCallbacks} />
+                                  cardCallbacks={this.props.cardCallbacks}
+                                  close={this.toggleUpdateModal}/>
 
                     </ModalBody>
 

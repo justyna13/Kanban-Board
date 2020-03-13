@@ -11,7 +11,7 @@ class NewCard extends React.Component {
             title: '',
             description: '',
             status: 'todo',
-            color: "#fff",
+            color: "#000",
             tasks: [],
         });
     }
@@ -22,6 +22,7 @@ class NewCard extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        this.props.close();
         this.props.cardCallbacks.addCard(this.state);
     }
 
@@ -39,7 +40,8 @@ class NewCard extends React.Component {
 }
 
 NewCard.propTypes = {
-  cardCallbacks: PropTypes.object
+    cardCallbacks: PropTypes.object,
+    close: PropTypes.func,
 };
 
 export default NewCard;
