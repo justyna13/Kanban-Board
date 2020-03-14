@@ -17,7 +17,7 @@ class CheckList extends React.Component {
             <li key={task.id} className={task.done ? "task task--done": "task"}>
                 <input  type="checkbox"
                         checked={task.done}
-                        onChange={this.props.taskCallbacks.toogle.bind(null, this.props.cardId, task.id, taskIndex)} />
+                        onChange={this.props.taskCallbacks.toggle.bind(null, this.props.cardId, task.id, taskIndex)} />
                         {task.name}
 
                 <button href="#" className="checklist__task__btn checklist__task__btn--remove"

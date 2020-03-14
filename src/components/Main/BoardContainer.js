@@ -2,9 +2,8 @@ import React from "react";
 import update from 'react-addons-update';
 import defaultCards from '../../defaultCards';
 import Board from "./Board";
-import defaultBg from '../../assets/images/bg-default.jpg';
 import Title from "./Title";
-import {HashRouter} from "react-router-dom";
+import defaultBg from '../../assets/images/bg-default.jpg';
 
 
 class BoardContainer extends React.Component {
@@ -26,7 +25,6 @@ class BoardContainer extends React.Component {
 
 
     addTask(cardId, taskName) {
-        console.log('add');
         let cardIndex = this.state.cards.findIndex( (card) => card.id === cardId);
         let newTask = {id: Date.now(), name: taskName, done: false};
         let nextState = update(this.state.cards, {
@@ -139,7 +137,7 @@ class BoardContainer extends React.Component {
 
                 <Board cards={this.state.cards}
                        taskCallbacks={{
-                           toogle: this.toggleTask.bind(this),
+                           toggle: this.toggleTask.bind(this),
                            add: this.addTask.bind(this),
                            delete: this.deleteTask.bind(this)
                        }}

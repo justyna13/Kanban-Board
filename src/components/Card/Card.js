@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import CheckList from "../TasksList/CheckList";
 import { DragSource, DropTarget } from 'react-dnd';
-import Modal from "react-bootstrap/Modal";
-import ModalHeader from "react-bootstrap/ModalHeader";
-import {ModalBody} from "react-bootstrap";
-import NewCard from "./NewCard";
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import constants from "../../constants";
+
+import CheckList from "../TasksList/CheckList";
 import EditCard from "./EditCard";
+import {Modal, ModalBody} from "react-bootstrap";
+import ModalHeader from "react-bootstrap/ModalHeader";
 
 
 const cardDragSpec = {
@@ -22,7 +22,6 @@ const cardDragSpec = {
 const cardDropSpec = {
     hover(props, monitor) {
         const draggedId = monitor.getItem().id;
-
         props.cardCallbacks.updateCardPosition(draggedId, props.id)
     }
 };
@@ -36,7 +35,6 @@ let collectDrag = (connect, monitor) => {
 let collectDrop = (connect, monitor) => {
     return {
         connectDropTarget: connect.dropTarget(),
-
     }
 };
 
@@ -53,15 +51,10 @@ class Card extends React.Component{
 
     toggleDetails() {
         this.setState({showDetails: !this.state.showDetails});
-        console.log('toogle');
     }
 
     toggleUpdateModal = () => {
-        this.state.updateModalVisible
-            ? this.setState({
-                updateModalVisible: false
-            })
-            : this.setState({updateModalVisible: true})
+        this.setState({updateModalVisible: !this.state.updateModalVisible});
     };
 
     render() {
@@ -156,8 +149,8 @@ Card.propTypes = {
     color: PropTypes.string
 };
 
-const dragHighOrderCard = DragSource('card', cardDragSpec, collectDrag)(Card);
-const dragDropHighOrderCard = DropTarget('card', cardDropSpec, collectDrop)(dragHighOrderCard);
+const dragHighOrderCard = DragSource(constants.CARD, cardDragSpec, collectDrag)(Card);
+const dragDropHighOrderCard = DropTarget(constants.CARD, cardDropSpec, collectDrop)(dragHighOrderCard);
 
 export default dragDropHighOrderCard
 

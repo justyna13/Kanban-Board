@@ -1,13 +1,13 @@
 import React from "react";
-import List from "../TasksList/List";
 import {DndProvider} from "react-dnd";
 import HTML5Backend from 'react-dnd-html5-backend';
 import PropTypes from 'prop-types';
+
+import List from "../TasksList/List";
+import NewCard from "../Card/NewCard";
 import Modal from "react-bootstrap/Modal";
 import ModalHeader from "react-bootstrap/ModalHeader";
-import {Button, ModalBody, ModalTitle} from "react-bootstrap";
-import NewCard from "../Card/NewCard";
-import CardForm from "../Card/CardForm";
+import {Button, ModalBody} from "react-bootstrap";
 
 
 class Board extends React.Component {
@@ -20,12 +20,7 @@ class Board extends React.Component {
 
 
     toggleModal = () => {
-        this.state.modalVisible
-            ? this.setState({
-                modalVisible: false
-            })
-            : this.setState({modalVisible: true});
-
+        this.setState({modalVisible: !this.state.modalVisible});
     };
 
 
@@ -80,7 +75,6 @@ class Board extends React.Component {
                     </ModalBody>
 
                 </Modal>
-
             </div>
 
         );

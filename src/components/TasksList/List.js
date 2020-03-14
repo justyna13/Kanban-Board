@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { DropTarget } from 'react-dnd';
 import Card from '../Card/Card';
+import constants from "../../constants";
 
 
 const listTargetSpec = {
@@ -35,7 +36,7 @@ class List extends Component {
             </div>
         );
     }
-};
+}
 
 List.propTypes = {
     title: PropTypes.string.isRequired,
@@ -45,4 +46,4 @@ List.propTypes = {
     connectDropTarget: PropTypes.func.isRequired
 };
 
-export default DropTarget('card', listTargetSpec, collect)(List);
+export default DropTarget(constants.CARD, listTargetSpec, collect)(List);
