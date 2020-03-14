@@ -84,6 +84,7 @@ class Card extends React.Component{
         if (this.state.showDetails) {
             cardDetails = (
                 <div className="card__details" >
+                    <h4 className="card__details__label">Description: </h4>
                     <p>{this.props.description}</p>
 
                     <CheckList cardId={this.props.id}

@@ -29,8 +29,9 @@ class CheckList extends React.Component {
         ));
 
         return (
-            <div className="checklist">
-                <ul>
+            <div>
+                <ul className="checklist">
+                    <h4 className="card__details__label">Tasks:</h4>
                     {tasks}
                 </ul>
                 <input className="checklist__input--add-task"
