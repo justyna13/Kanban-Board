@@ -1,8 +1,8 @@
 let cardsList = [
     {
         id: 1,
-        title: "Kot",
-        description: "Nakarmić kota",
+        title: "Bieganie",
+        description: "Codzienny poranny bieg",
         status: 'todo',
         color: '#bd8d31',
         tasks: []
