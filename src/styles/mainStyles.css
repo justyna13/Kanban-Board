@@ -7,8 +7,6 @@
   margin-bottom: 5%;
   padding-bottom: 10px;
   position: relative;
-  max-height: 50vh;
-  overflow-y: auto;
   white-space: normal; }
   .card--add {
     background-color: #6aaf00;
@@ -74,9 +72,11 @@
   display: flex;
   flex-direction: column;
   font-family: Roboto, sans-serif;
-  max-height: 100%;
   position: relative;
-  white-space: normal; }
+  white-space: normal;
+  max-height: 70vh;
+  overflow-x: hidden;
+  overflow-y: auto; }
   .list__header {
     background-color: #322d47;
     border-radius: 3px;
