@@ -137,6 +137,9 @@
   top: 0;
   right: 0; }
 
+body {
+  margin: 0; }
+
 .board {
   display: block;
   height: 93vh;

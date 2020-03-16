@@ -6,6 +6,10 @@
 $board-title-color: #cfcfcf;
 $my-green:  #6aaf00;
 
+body {
+  margin: 0;
+}
+
 .board {
   display: block;
   height: 93vh;
