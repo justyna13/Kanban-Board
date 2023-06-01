@@ -14,7 +14,6 @@ class Title extends React.Component {
 
     showTitleInput() {
         this.setState({changeTitle: !this.state.changeTitle});
-        console.log(this.state.changeTitle);
     }
 
     handleChange(e) {
