@@ -81,7 +81,7 @@ class BoardContainer extends React.Component {
 
     addCard = (card) => {
         if (card.id === null) {
-            let card = Object.assign({}, card, {id:Date.now()});
+            card = Object.assign({}, card, {id:Date.now()});
         }
 
         let nextState = update(this.state.cards, {$push: [card]});
