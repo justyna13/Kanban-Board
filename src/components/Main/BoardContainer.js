@@ -80,8 +80,6 @@ class BoardContainer extends React.Component {
     }
 
     addCard = (card) => {
-        console.log(this.state);
-
         if (card.id === null) {
             let card = Object.assign({}, card, {id:Date.now()});
         }
