@@ -20,7 +20,17 @@ class BoardContainer extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({cards: defaultCards});
+        const updatedCards = localStorage.getItem("kanban-cards")
+        const parsedCards = updatedCards ? JSON.parse(updatedCards) : null
+        const stateToUpdate = {
+            cards: parsedCards ?? defaultCards
+        }
+        console.log(stateToUpdate, parsedCards)
+        this.setState(stateToUpdate);
+
+        if (!parsedCards) {
+            localStorage.setItem("kanban-cards", JSON.stringify(defaultCards))
+        }
     }
 
 
@@ -66,6 +76,7 @@ class BoardContainer extends React.Component {
         });
 
         this.setState({cards: nextState});
+        // localStorage.setItem("kanban-cards", JSON.parse(nextState))
     }
 
     addCard = (card) => {
@@ -78,6 +89,8 @@ class BoardContainer extends React.Component {
         let nextState = update(this.state.cards, {$push: [card]});
 
         this.setState({cards: nextState});
+
+        // localStorage.setItem("kanban-cards", JSON.stringify(this.state.cards))
     };
 
     updateCard = (card) => {
@@ -87,6 +100,7 @@ class BoardContainer extends React.Component {
         });
 
         this.setState({cards: nextState});
+        // localStorage.setItem("kanban-cards", JSON.parse(nextState))
     };
 
     updateCardStatus(cardId, listId) {
@@ -104,6 +118,7 @@ class BoardContainer extends React.Component {
                 }
             }));
         }
+        // localStorage.setItem("kanban-cards", this.state.cards)
     }
 
     updateCardPosition(cardId , afterId){

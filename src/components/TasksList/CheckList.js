@@ -12,7 +12,6 @@ class CheckList extends React.Component {
     }
 
     render() {
-
         let tasks = this.props.tasks.map( (task, taskIndex) => (
             <li key={task.id} className={task.done ? "task task--done": "task"}>
                 <input  type="checkbox"

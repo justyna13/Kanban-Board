@@ -29,18 +29,18 @@ body {
   text-align: center;
   text-transform: uppercase;
 
-
   i {
-    margin-left: 15px;
-    top: 2vh;
     position: relative;
+  }
+  i::before {
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    transform: translateY(-50%);
   }
 
   .title {
     text-align: right;
-    margin: 3%;
-    max-height: 10vh;
-    overflow-x: hidden;
   }
 
   .title__input {
@@ -49,15 +49,11 @@ body {
     margin-top: 3%;
     margin-bottom: 3%;
   }
-
-
-
   .title__header {
     display: grid;
     grid-template-columns: 50% 10%;
     position: relative;
-    max-height: 10vh;
-
+    height: 90px;
   }
 
   input {
@@ -89,3 +85,16 @@ body {
   }
 }
 
+@media (max-width: 767px) {
+  .board__title .title__header {
+    grid-template-columns: 70% 10%;
+    .title {
+      margin-top: 12px;
+      top: 12px;
+      text-align: center;
+    }
+    i:before {
+      top: calc(50% - 14px)
+    }
+  }
+}

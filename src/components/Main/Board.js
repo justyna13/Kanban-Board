@@ -27,37 +27,39 @@ class Board extends React.Component {
     render() {
         let bgStyle = {
             background: `url(${this.props.bg})`,
-            backgroundSize: '100% 100%'
+            overflow: 'scroll',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat'
         };
 
         return (
             <div className="board" style={bgStyle}>
-                <div className={this.state.modalVisible? "lists modal--open": "lists"}>
+                <div>
+                    <div className={this.state.modalVisible? "lists modal--open": "lists"}>
 
-                    <DndProvider backend={HTML5Backend}>
+                        <DndProvider backend={HTML5Backend}>
 
-                        <List id='todo'
-                              title="To Do"
-                              taskCallbacks={this.props.taskCallbacks}
-                              cardCallbacks={this.props.cardCallbacks}
-                              cards={this.props.cards.filter( (card) => card.status === 'todo')} />
+                            <List id='todo'
+                                  title="To Do"
+                                  taskCallbacks={this.props.taskCallbacks}
+                                  cardCallbacks={this.props.cardCallbacks}
+                                  cards={this.props.cards.filter( (card) => card.status === 'todo')} />
 
-                        <List id='in-progress'
-                              title="In progress"
-                              taskCallbacks={this.props.taskCallbacks}
-                              cardCallbacks={this.props.cardCallbacks}
-                              cards={this.props.cards.filter( (card) => card.status === 'in-progress')} />
+                            <List id='in-progress'
+                                  title="In progress"
+                                  taskCallbacks={this.props.taskCallbacks}
+                                  cardCallbacks={this.props.cardCallbacks}
+                                  cards={this.props.cards.filter( (card) => card.status === 'in-progress')} />
 
-                        <List id="done"
-                            title="Done"
-                              taskCallbacks={this.props.taskCallbacks}
-                              cardCallbacks={this.props.cardCallbacks}
-                              cards={this.props.cards.filter( (card) => card.status === 'done')} />
+                            <List id="done"
+                                  title="Done"
+                                  taskCallbacks={this.props.taskCallbacks}
+                                  cardCallbacks={this.props.cardCallbacks}
+                                  cards={this.props.cards.filter( (card) => card.status === 'done')} />
 
-                    </DndProvider>
+                        </DndProvider>
+                    </div>
                 </div>
-
-
                 <Button className="card--add"
                         onClick={() => this.toggleModal()}>+</Button>
 
